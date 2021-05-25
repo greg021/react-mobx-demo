@@ -1,7 +1,7 @@
-import React from "react";
-import { observer } from "mobx-react-lite";
+import React from "react"
+import { observer } from "mobx-react-lite"
 
-import { CollectionPropType } from "./Collection.module";
+import { CollectionPropType } from "./Collection.module"
 
 const Filters = observer(({ collection }) => {
   const {
@@ -15,10 +15,10 @@ const Filters = observer(({ collection }) => {
     onSetFilterState,
     query,
     sortAsc,
-  } = collection;
+  } = collection
 
   if (!fetched) {
-    return null;
+    return null
   }
 
   return (
@@ -54,11 +54,11 @@ const Filters = observer(({ collection }) => {
 
       {canClearFilters && <button onClick={onClearFilters}>Clear filters</button>}
     </>
-  );
-});
+  )
+})
 
 const Collection = observer(({ collection }) => {
-  const { fetching, results, onFetch } = collection;
+  const { fetching, results, onFetch } = collection
 
   return (
     <>
@@ -74,11 +74,11 @@ const Collection = observer(({ collection }) => {
         ))}
       </ul>
     </>
-  );
-});
+  )
+})
 
 Collection.propTypes = {
   collection: CollectionPropType.isRequired,
-};
+}
 
-export { Collection };
+export { Collection }

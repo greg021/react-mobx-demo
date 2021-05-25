@@ -1,1 +1,1 @@
-export { Simple } from "./Simple";
+export { Simple } from "./Simple"

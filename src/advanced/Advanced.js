@@ -1,9 +1,9 @@
-import React from "react";
-import { observer } from "mobx-react-lite";
+import React from "react"
+import { observer } from "mobx-react-lite"
 
-import { store } from "./Advanced.store";
+import { store } from "./Advanced.store"
 
-const CATEGORIES = ["", "Phone", "Laptop", "Camera"];
+const CATEGORIES = ["", "Phone", "Laptop", "Camera"]
 
 const Filters = observer(() => {
   const {
@@ -16,10 +16,10 @@ const Filters = observer(() => {
     onChangeQuery,
     onChangeSort,
     onClearFilters,
-  } = store;
+  } = store
 
   if (!fetched) {
-    return null;
+    return null
   }
 
   return (
@@ -47,11 +47,11 @@ const Filters = observer(() => {
 
       {canClearFilters && <button onClick={onClearFilters}>Clear filters</button>}
     </>
-  );
-});
+  )
+})
 
 export const Advanced = observer(() => {
-  const { fetching, results, onFetch } = store;
+  const { fetching, results, onFetch } = store
 
   return (
     <>
@@ -67,5 +67,5 @@ export const Advanced = observer(() => {
         ))}
       </ul>
     </>
-  );
-});
+  )
+})

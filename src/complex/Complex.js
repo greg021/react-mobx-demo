@@ -1,11 +1,11 @@
-import React from "react";
-import { observer } from "mobx-react-lite";
+import React from "react"
+import { observer } from "mobx-react-lite"
 
-import { useStore } from "./Complex.store";
-import { Collection } from "./Collection";
+import { useStore } from "./Complex.store"
+import { Collection } from "./Collection"
 
 export const Complex = observer(() => {
-  const store = useStore();
+  const store = useStore()
 
   return (
     <div style={{ display: "flex" }}>
@@ -19,5 +19,5 @@ export const Complex = observer(() => {
         <Collection collection={store.products} />
       </div>
     </div>
-  );
-});
+  )
+})

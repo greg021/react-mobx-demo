@@ -1,23 +1,23 @@
-import { makeAutoObservable } from "mobx";
+import { makeAutoObservable } from "mobx"
 
-class SimpleStore {
-  count = 0;
+class Store {
+  count = 0
 
   constructor() {
-    makeAutoObservable(this);
+    makeAutoObservable(this)
   }
 
   get isNegative() {
-    return this.count < 0 ? "Yes" : "No";
+    return this.count < 0 ? "Yes" : "No"
   }
 
-  onAdd = () => {
-    this.count += 1;
-  };
+  onIncrement = () => {
+    this.count += 1
+  }
 
-  onSubtract = () => {
-    this.count -= 1;
-  };
+  onDecrement = () => {
+    this.count -= 1
+  }
 }
 
-export const store = new SimpleStore();
+export const store = new Store()

@@ -1,4 +1,4 @@
-import lowerCase from "lodash.lowercase";
+import lowerCase from "lodash.lowercase"
 
 const products = [
   { id: 1, title: "iPhone 8", category: "Phone", condition: "new" },
@@ -12,31 +12,31 @@ const products = [
   { id: 7, title: "Nikon D750", category: "Camera", condition: "new" },
   { id: 8, title: "Canon M50", category: "Camera", condition: "new" },
   { id: 9, title: "Leica M6", category: "Camera", condition: "used" },
-];
+]
 
 const categories = [
   { id: 1, title: "Phone" },
   { id: 2, title: "Laptop" },
   { id: 3, title: "Camera" },
-];
+]
 
-const matches = (query, source) => lowerCase(source).includes(lowerCase(query));
+const matches = (query, source) => lowerCase(source).includes(lowerCase(query))
 
-const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms))
 
 const makeFakeFetch = async (query, data) => {
-  const results = query ? data.filter((item) => lowerCase(item.title).includes(lowerCase(query))) : data;
+  const results = query ? data.filter((item) => lowerCase(item.title).includes(lowerCase(query))) : data
 
-  await sleep(500);
+  await sleep(500)
 
   return Promise.resolve({
     data: results,
     total: results.length,
-  });
-};
+  })
+}
 
-const fakeFetchProducts = (query) => makeFakeFetch(query, products);
+const fakeFetchProducts = (query) => makeFakeFetch(query, products)
 
-const fakeFetchCategories = (query) => makeFakeFetch(query, categories);
+const fakeFetchCategories = (query) => makeFakeFetch(query, categories)
 
-export { fakeFetchProducts, fakeFetchCategories, matches };
+export { fakeFetchProducts, fakeFetchCategories, matches }

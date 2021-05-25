@@ -1,32 +1,32 @@
-import t from "prop-types";
-import { makeAutoObservable } from "mobx";
+import t from "prop-types"
+import { makeAutoObservable } from "mobx"
 
-import { matches } from "../../api";
+import { matches } from "../../api"
 
 export class CollectionModule {
   // ====================================================
   // State
   // ====================================================
-  data = [];
+  data = []
 
-  filtersState = {};
-  filtersDefinition = {};
+  filtersState = {}
+  filtersDefinition = {}
 
-  query = "";
-  sortAsc = true;
+  query = ""
+  sortAsc = true
 
-  fetched = false;
-  fetching = false;
+  fetched = false
+  fetching = false
 
-  props = {};
+  props = {}
 
   constructor(props) {
-    makeAutoObservable(this);
+    makeAutoObservable(this)
 
-    this.props = props;
+    this.props = props
 
     if (props.filters) {
-      Object.entries(props.filters).forEach(([key, options]) => this.onSetFilterDefinition(key, options));
+      Object.entries(props.filters).forEach(([key, options]) => this.onSetFilterDefinition(key, options))
     }
   }
 
@@ -50,70 +50,70 @@ export class CollectionModule {
           Object.entries(this.filtersState).every(([key, filter]) =>
             Object.entries(item).every(([prop, value]) => {
               if (key === prop && filter) {
-                return filter === value;
+                return filter === value
               }
 
-              return true;
+              return true
             })
           )
         )
-    );
+    )
   }
 
   get hasFilters() {
-    return Object.keys(this.filtersState).length && Object.values(this.filtersState).every((state) => state);
+    return Object.keys(this.filtersState).length && Object.values(this.filtersState).every((state) => state)
   }
 
   get canClearFilters() {
-    return Boolean(this.query || !this.sortAsc || this.hasFilters);
+    return Boolean(this.query || !this.sortAsc || this.hasFilters)
   }
 
   // ====================================================
   // Actions
   // ====================================================
   onFetch = async () => {
-    this.fetching = true;
+    this.fetching = true
 
     try {
-      const res = await this.props.fetch();
-      this._onFetchSuccess(res.data);
+      const res = await this.props.fetch()
+      this._onFetchSuccess(res.data)
     } catch (error) {
-      this._onFetchFailure(error);
+      this._onFetchFailure(error)
     }
-  };
+  }
 
   _onFetchSuccess = (data) => {
-    this.data.replace(data);
-    this.fetched = true;
-    this.fetching = false;
-  };
+    this.data.replace(data)
+    this.fetched = true
+    this.fetching = false
+  }
 
   _onFetchFailure = (error) => {
-    console.log("Failed to fetch", error);
-    this.fetching = false;
-  };
+    console.log("Failed to fetch", error)
+    this.fetching = false
+  }
 
   onSetFilterState = (key, value) => {
-    this.filtersState[key] = value;
-  };
+    this.filtersState[key] = value
+  }
 
   onSetFilterDefinition = (key, options) => {
-    this.filtersDefinition[key] = options;
-  };
+    this.filtersDefinition[key] = options
+  }
 
   onChangeQuery = (query) => {
-    this.query = query;
-  };
+    this.query = query
+  }
 
   onChangeSort = (sortAsc) => {
-    this.sortAsc = sortAsc;
-  };
+    this.sortAsc = sortAsc
+  }
 
   onClearFilters = () => {
-    this.filtersState = {};
-    this.sortAsc = true;
-    this.query = "";
-  };
+    this.filtersState = {}
+    this.sortAsc = true
+    this.query = ""
+  }
 }
 
 // If you use TypeScript, you can just use the class itself as a type
@@ -127,4 +127,4 @@ export const CollectionPropType = t.shape({
     fetch: t.func.isRequired,
     filters: t.objectOf(t.array),
   }).isRequired,
-});
+})

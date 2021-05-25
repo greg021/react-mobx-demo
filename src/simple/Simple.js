@@ -1,19 +1,18 @@
-import React from "react";
-import { observer } from "mobx-react-lite";
+import React from "react"
+import { observer } from "mobx-react-lite"
 
-import { store } from "./Simple.store";
+import { store } from "./Simple.store"
+import { Negative } from "./Negative"
 
 export const Simple = observer(() => {
-  const { count, isNegative, onAdd, onSubtract } = store;
+  const { count, onDecrement, onIncrement } = store
 
   return (
     <>
       <div>Count: {count}</div>
-
-      <div>Is negative: {isNegative}</div>
-
-      <button onClick={onAdd}>Add</button>
-      <button onClick={onSubtract}>Subtract</button>
+      <Negative />
+      <button onClick={onIncrement}>Increment</button>
+      <button onClick={onDecrement}>Decrement</button>
     </>
-  );
-});
+  )
+})
